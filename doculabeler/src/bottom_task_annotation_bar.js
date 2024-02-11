@@ -53,7 +53,7 @@ export const BottomTaskAnnotationBar = ({labels_list, activeLabel, setActiveLabe
             }
         }
 
-        console.log(newLabelName);
+        ////console.log(newLabelName);
         setNewLabelFormState(false)
         setColorWidgetState(false)
         let updatedLabelsList = [...labelsList]

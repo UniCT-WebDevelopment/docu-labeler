@@ -26,7 +26,7 @@ const ProjectCardDropdown = (params) => {
     setConfirmDeleteWarning(true);
   }
   const username = localStorage.getItem("username")
-  console.log("Creatore", params.creator, "username", username);
+  ////console.log("Creatore", params.creator, "username", username);
   return (
     <div className="dropdown" onClick={params.onClick}>
       {confirmPublishWarning && 

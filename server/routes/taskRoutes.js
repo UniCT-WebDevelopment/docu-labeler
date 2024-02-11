@@ -14,7 +14,7 @@ const TaskAnnotations = require("../schemas/TaskAnnotations");
 
 
 router.post("/create_task", fileUpload(), async (req, res) => {
-    console.log("Called POST API /create_task")
+    //console.log("Called POST API /create_task")
     const project_id = req.body.project_id;
     const task_name = req.body.task_name;
     const username = req.body.username;
@@ -104,14 +104,14 @@ router.post("/create_task", fileUpload(), async (req, res) => {
                 "filenames_info": imgDimensions,
                 "annotations": imageRectanglesDict,
             });
-            console.log("Sto per inizializzare etichette del nuovo task");
+            //console.log("Sto per inizializzare etichette del nuovo task");
             await newTaskLabels.save();
 
             res.status(200).json({ message: 'Task creation and data storage successful', 
                                 task: createdTask});
         }
         catch (error) {
-            console.log("Error:", error);
+            //console.log("Error:", error);
         }
 
     } catch (error) {
@@ -122,7 +122,7 @@ router.post("/create_task", fileUpload(), async (req, res) => {
 
 router.post("/delete_task", async (req, res) => {
     const {task_id} = req.body;
-    console.log("Richiesta cancellazione task con id ", task_id)
+    //console.log("Richiesta cancellazione task con id ", task_id)
 
     try {
         const deletedTask = await Task.findByIdAndRemove(task_id);
@@ -145,13 +145,13 @@ router.post("/delete_task", async (req, res) => {
         const deletedAnnotations = await TaskAnnotations.deleteOne({task_id: ObjectId(task_id)})
 
         if (!deletedAnnotations) {
-            console.log("No annotation found for the deleted task");
+            //console.log("No annotation found for the deleted task");
         }
 
         const projects_dir = path.join(__dirname, "../storage/project_data");
         fs.readdirSync(projects_dir).forEach( async(p_dir) => {
             if(storageController.findDir(path.join(projects_dir, p_dir), task_id)) {
-                console.log("Trovato path task ", projects_dir+"/"+p_dir+"/"+task_id);
+                //console.log("Trovato path task ", projects_dir+"/"+p_dir+"/"+task_id);
                 storageController.deleteFolderRecursiveSync(path.join(projects_dir, p_dir, task_id));
             }
         })
@@ -165,7 +165,7 @@ router.post("/delete_task", async (req, res) => {
 
 router.post("/get_project_tasks", async (req, res) => {
     const {project_id} = req.body;
-    console.log("Richiesti task del progetto", project_id);
+    //console.log("Richiesti task del progetto", project_id);
 
     try {
         const projectInfo = await Project.findById(project_id);
@@ -188,7 +188,7 @@ router.post("/get_project_tasks", async (req, res) => {
 
 router.post("/get_task_image", async (req, res) => {
     const {project_id, task_id, currentImageId} = req.body;
-    console.log("Richiesta immagine task", project_id, task_id, currentImageId);
+    //console.log("Richiesta immagine task", project_id, task_id, currentImageId);
     const projects_dir = path.join(__dirname, "../storage/project_data");
     const img_dir = path.join(projects_dir, project_id, task_id);
     
@@ -209,7 +209,7 @@ router.post("/get_task_image", async (req, res) => {
 
 router.post("/get_task_images_len", async (req, res) => {
     const {project_id, task_id} = req.body;
-    console.log("Richiesto numero di immagini del task");
+    //console.log("Richiesto numero di immagini del task");
     const projects_dir = path.join(__dirname, "../storage/project_data");
     const img_dir = path.join(projects_dir, project_id, task_id);
     

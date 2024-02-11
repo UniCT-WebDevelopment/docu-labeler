@@ -17,7 +17,7 @@ export const ProjectCard = ({ title, id, creator, completed_tasks, total_tasks, 
   
 
   const get_project_annotations = async () => {
-    console.log("GET PROJECT ANNOTATIONS")
+    ////console.log("GET PROJECT ANNOTATIONS")
     const project_id = id;
     await fetch(`http://${apiAddress}/annotation/get_project_annotations_export`, {
         method: 'POST',
@@ -30,7 +30,7 @@ export const ProjectCard = ({ title, id, creator, completed_tasks, total_tasks, 
       })
       .then(async response => await response.json())
       .then(data => {
-        console.log("proj data", data);
+        ////console.log("proj data", data);
         setProjectData(data);
     });
   }
@@ -50,7 +50,7 @@ export const ProjectCard = ({ title, id, creator, completed_tasks, total_tasks, 
       })
       .then(async response => await response.json())
       .then(data => {
-        console.log("Progetto pubblicato!");
+        ////console.log("Progetto pubblicato!");
     });
     const currProjectIdx = updProjects.findIndex(
       (project) =>
@@ -76,7 +76,7 @@ export const ProjectCard = ({ title, id, creator, completed_tasks, total_tasks, 
       })
       .then(async response => await response.json())
       .then(data => {
-        console.log("Progetto privatizzato!");
+        ////console.log("Progetto privatizzato!");
     });
     const currProjectIdx = updProjects.findIndex(
       (project) =>

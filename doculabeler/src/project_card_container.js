@@ -28,7 +28,7 @@ export const ProjectCardContainer = (params) => {
 
       if (response.status === 200) {
         const data = await response.json();
-        console.log("Project deleted:", data);
+        ////console.log("Project deleted:", data);
         const updatedProjects = projects.filter((project) => project._id !== project_id);
         setProjects(updatedProjects);
       } else if (response.status === 404) {
@@ -44,7 +44,7 @@ export const ProjectCardContainer = (params) => {
 
     const sendRequest = async (requestFunction) => {
       try {
-          console.log(requestFunction)
+          ////console.log(requestFunction)
           await requestFunction();
       } catch (error) {
           // Handle errors here
@@ -64,7 +64,7 @@ export const ProjectCardContainer = (params) => {
   
         // Dequeue the next request and send it to the server
         const nextRequest = requestsQueue.shift();
-        console.log("Processo richiesta in coda", nextRequest)
+        ////console.log("Processo richiesta in coda", nextRequest)
 
         sendRequest(nextRequest)
           .then(() => {

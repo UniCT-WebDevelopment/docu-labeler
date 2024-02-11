@@ -38,7 +38,7 @@ async function initializeDatabase() {
         await db.createCollection(collectionInfo.name);
     }
 
-    console.log('Database initialization complete.');
+    //console.log('Database initialization complete.');
   } catch (error) {
     console.error("Error during database initialization: ", error.type)
   }

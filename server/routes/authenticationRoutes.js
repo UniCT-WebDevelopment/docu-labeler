@@ -9,7 +9,7 @@ const config = require("../config");
 
 router.post("/login", middleware.validateLogin, async (req, res) => {
     const validationErrors = validationResult(req);
-    console.log("Chiamato endpoint /login");
+    //console.log("Chiamato endpoint /login");
 
     if (!validationErrors.isEmpty()) {
         return res.status(422).json({ errors: validationErrors.array() });
@@ -60,25 +60,25 @@ router.post('/guest_login', async (req, res) => {
 
 router.post("/verify_jwt", async (req, res) => {
     const { token } = req.body;
-    console.log("Chiamato endpoint /verify_jwt")
+    //console.log("Chiamato endpoint /verify_jwt")
     let isJwtValid = false;
     jwt.verify(token, config.JWT_SECRET_KEY, (err, decoded) => {
         if (err) {
             // Token is invalid (e.g., expired)
-            console.log('Token is invalid');
+            //console.log('Token is invalid');
         } else {
             // Token is valid, and the payload is in 'decoded'
-            console.log('Token is valid:', decoded);
+            //console.log('Token is valid:', decoded);
             isJwtValid = true;
         }
     });
     jwt.verify(token, config.GUEST_JWT_SECRET_KEY, (err, decoded) => {
         if (err) {
             // Token is invalid (e.g., expired)
-            console.log('Token is invalid');
+            //console.log('Token is invalid');
         } else {
             // Token is valid, and the payload is in 'decoded'
-            console.log('Token is valid:', decoded);
+            //console.log('Token is valid:', decoded);
             isJwtValid = true;
         }
     });

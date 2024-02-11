@@ -7,15 +7,15 @@ const middleware = require('../middleware');
 
 router.post("/register", middleware.validateRegister, (req, res)=> {
     const validation_error = validationResult(req)
-    console.log("Richiesta di registrazione avvenuta");
+    //console.log("Richiesta di registrazione avvenuta");
     if (!validation_error.isEmpty()) {
-        console.log(validation_error.array());
+        //console.log(validation_error.array());
         return res.status(422).json({
             target: "list",
             message: validation_error.array()});
     }
     else {
-        console.log("Body richiesta: ", req.body);
+        //console.log("Body richiesta: ", req.body);
         let username=req.body.username;
         let password=req.body.password;  
         let password_confirm = req.body.password_confirm

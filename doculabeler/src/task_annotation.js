@@ -93,7 +93,7 @@ export const TaskAnnotator = () => {
         const snapshot = {
             rectangles: JSON.stringify(rectangles),
         }
-        console.log("Salvo snapshot", snapshot);
+        //console.log("Salvo snapshot", snapshot);
         const updSnapshotList = [...snapshotList];
         if(updSnapshotList.length>maxHistoryLength)
             updSnapshotList.shift();
@@ -119,7 +119,7 @@ export const TaskAnnotator = () => {
     }
 
     const get_task_images_len = async () => {
-        console.log("Richiesto numero di immagini per il task");
+        //console.log("Richiesto numero di immagini per il task");
         await fetch(`http://${apiAddress}/task/get_task_images_len`, {
             method: 'POST',
             headers: {
@@ -136,7 +136,7 @@ export const TaskAnnotator = () => {
     }
 
     const get_task_image = async () => {
-        console.log("Richiesta immagine task numero", currentImageId);
+        //console.log("Richiesta immagine task numero", currentImageId);
         await fetch(`http://${apiAddress}/task/get_task_image`, {
             method: 'POST',
             headers: {
@@ -160,7 +160,7 @@ export const TaskAnnotator = () => {
     }
 
     const get_task_annotations = async () => {
-        console.log("GET TASK ANNOTATIONS")
+        //console.log("GET TASK ANNOTATIONS")
         await fetch(`http://${apiAddress}/annotation/get_task_annotations`, {
             method: 'POST',
             headers: {
@@ -172,13 +172,13 @@ export const TaskAnnotator = () => {
         })
         .then(async response => await response.json())
         .then(data => {
-            console.log("Data task", data);
+            //console.log("Data task", data);
             if(data.annotations!=null || data.annotations!=undefined) {
                 setImageRectanglesDict(data.annotations);
                 setRectangles(data.annotations[currentImageId])
             }
-            console.log("Retrieved labels:", data.annotations);
-            console.log("Current ID image", currentImageId);
+            //console.log("Retrieved labels:", data.annotations);
+            //console.log("Current ID image", currentImageId);
         });
     }
 
@@ -200,7 +200,7 @@ export const TaskAnnotator = () => {
 
     const sendRequest = async (requestFunction) => {
         try {
-            // console.log(requestFunction)
+            // //console.log(requestFunction)
             await requestFunction();
         } catch (error) {
             // Handle errors here
@@ -220,7 +220,7 @@ export const TaskAnnotator = () => {
     
           // Dequeue the next request and send it to the server
           const nextRequest = requestsQueue.shift();
-          // console.log("Processo richiesta in coda", nextRequest)
+          // //console.log("Processo richiesta in coda", nextRequest)
 
           sendRequest(nextRequest)
             .then(() => {
@@ -290,7 +290,7 @@ export const TaskAnnotator = () => {
     useEffect(() => {
         if(prevImageId!==undefined) {
             setSnapshotList([]);
-            console.log("USEEFFECT: Cerco di recuperare l'immagine", currentImageId)
+            //console.log("USEEFFECT: Cerco di recuperare l'immagine", currentImageId)
             enqueueRequest(get_task_image());
             // Se è stata modificata qualcosa nelle annotazioni le salvo a DB
 
@@ -311,8 +311,8 @@ export const TaskAnnotator = () => {
     const handleWheel = (e) => {
         let svgWidth = window.innerWidth*0.94736; 
         let svgHeight = globalSvgHeight;
-        //console.log(window.innerWidth*0.66666)
-        console.log("Valore deltaY: ", e.deltaY)
+        ////console.log(window.innerWidth*0.66666)
+        //console.log("Valore deltaY: ", e.deltaY)
         const scaleFactor = (imageZoomFactor < 0.10 && e.deltaY < 0) || (imageZoomFactor > 3 && e.deltaY > 0) || e.deltaY == 0 ? 1 : 1.1 
         imageZoomFactor = e.deltaY > 0 ? imageZoomFactor * scaleFactor : imageZoomFactor / scaleFactor
         const mouseX = e.nativeEvent.offsetX;
@@ -320,7 +320,7 @@ export const TaskAnnotator = () => {
 
         const fixedX = viewBox.x + mouseX * (viewBox.width / svgWidth);
         const fixedY = viewBox.y + mouseY * (viewBox.height / svgHeight);
-        //console.log("mouse", mouseX, mouseY);
+        ////console.log("mouse", mouseX, mouseY);
 
         // Calculate new dimensions for viewBox
         const newWidth = e.deltaY > 0 ? viewBox.width * scaleFactor : viewBox.width / scaleFactor;
@@ -334,7 +334,7 @@ export const TaskAnnotator = () => {
         const deltaY = (viewBox.height - newHeight) * (mouseY / globalSvgHeight);
 
 
-        //console.log("new w/h", newWidth, newHeight)
+        ////console.log("new w/h", newWidth, newHeight)
         // Update the viewBox
         setViewBox({
         x: newX,
@@ -354,7 +354,7 @@ export const TaskAnnotator = () => {
             handleCanvasClick(e);
         } else if (currentMode === 'selectMode') {
             if (e.target.tagName === 'circle') {
-                //console.log("Click su vertice");
+                ////console.log("Click su vertice");
                 saveSnapshot();
                 const cornerClass = e.target.getAttribute('class').split(" ")[1];
                 setResizeAngle(cornerClass);
@@ -363,8 +363,8 @@ export const TaskAnnotator = () => {
                 setResizeStartY(mousePosition.y);
             }
             else if (e.target.tagName == 'image' && e.button == 0) {
-                console.log("Ho cliccato sul canvas, ma su nessun oggetto")
-                console.log(e.button);
+                //console.log("Ho cliccato sul canvas, ma su nessun oggetto")
+                //console.log(e.button);
                 if(!isDrawingSelection) {
                     const svgPoint = mousePosition;
                     setStartPoint({ x: svgPoint.x, y: svgPoint.y });
@@ -458,7 +458,7 @@ export const TaskAnnotator = () => {
             point.y = e.clientY;
             const svgPoint = point.matrixTransform(svg.getScreenCTM().inverse());
             setMousePosition({ x: svgPoint.x, y: svgPoint.y });
-            //console.log(mousePosition);
+            ////console.log(mousePosition);
         }
     
     };
@@ -502,6 +502,8 @@ export const TaskAnnotator = () => {
         setIsResizingRectangle(false);
         if(isDrawingSelection) {
             const svgPoint = mousePosition;
+            startPoint.x = startPoint.x - 100;
+            svgPoint.x = svgPoint.x - 100;
             setEndPoint({ x: svgPoint.x, y: svgPoint.y });
             let tmp = []
             if (svgPoint.x < startPoint.x || svgPoint.y < startPoint.y) {
@@ -511,13 +513,14 @@ export const TaskAnnotator = () => {
                 svgPoint.x = tmp[0];
                 svgPoint.y = tmp[1];
             }
-            //console.log("start e endpoint del box di selezione", startPoint, { x: svgPoint.x, y: svgPoint.y });
+            console.log("start e endpoint del box di selezione", startPoint, { x: svgPoint.x, y: svgPoint.y });
             let selectedRectangles = [...rectangles]
             for(let rectangle of selectedRectangles) {
-                let [x1, y1, x2, y2] = [rectangle.x - rectangle.width/2, rectangle.y - rectangle.height/2, 
-                rectangle.x + rectangle.width/2, rectangle.y + rectangle.height/2];
+                let [x1, y1, x2, y2] = [(rectangle.x - 100) , rectangle.y, 
+                (rectangle.x - 100) + rectangle.width, rectangle.y + rectangle.height];
                 rectangle.selected = rectanglesIntersect([x1,y1,x2,y2], [startPoint.x, startPoint.y, svgPoint.x, svgPoint.y])
                 //console.log(x1,y1,x2,y2,rectangle.selected)
+                console.log(rectangle);
             }
             setRectangles(selectedRectangles)
             setIsDrawingSelection(false);
@@ -541,14 +544,14 @@ export const TaskAnnotator = () => {
             const svgPoint = mousePosition;
             setStartPoint({ x: svgPoint.x, y: svgPoint.y });
             setIsDrawing(true);
-            //console.log("primo punto", svgPoint.x, svgPoint.y)
+            ////console.log("primo punto", svgPoint.x, svgPoint.y)
 
         } else {
             // Second click to finalize the rectangle
             const svgPoint = mousePosition;
             setEndPoint({ x: svgPoint.x, y: svgPoint.y });
             setIsDrawing(false);
-            //console.log("secondo punto", svgPoint.x, svgPoint.y)            
+            ////console.log("secondo punto", svgPoint.x, svgPoint.y)            
             // Create a rectangle object and add it to the list
             const newRectangle = {
                 index: rectangles.length+1,
@@ -602,7 +605,7 @@ export const TaskAnnotator = () => {
                     rectangles[clickedRectIdx].selected=true;
                     setFocusedRect(rectangles[clickedRectIdx])
                     if(e.detail==2) {
-                        console.log("doppio click sul rett")
+                        //console.log("doppio click sul rett")
                         saveSnapshot();
                         let updatedRect = [...rectangles]
                         updatedRect[clickedRectIdx].collapsed=!updatedRect[clickedRectIdx].collapsed;
@@ -632,7 +635,7 @@ export const TaskAnnotator = () => {
                       mousePosition.y <= rect.y + rect.height
                   );
                   if (clickedRectIdx != -1) {
-                    console.log("Cliccato rettangolo", clickedRectIdx);
+                    //console.log("Cliccato rettangolo", clickedRectIdx);
                     saveSnapshot();
                     let updatedRect = [...rectangles]
                     updatedRect[clickedRectIdx].selected=true;
@@ -659,23 +662,23 @@ export const TaskAnnotator = () => {
                 const justDeletedRectUids = deletedRects.map((rect) => rect.uid);
 
                 updatedDeletedRectUids.push(...justDeletedRectUids);
-                console.log(updatedDeletedRectUids);
+                //console.log(updatedDeletedRectUids);
                 setDeletedRectUids(updatedDeletedRectUids);
 
                 let updatedRects = rectangles.filter((rect) => rect.selected==false);
 
                 for(let i=1; i<=updatedRects.length; i++) {
-                    //console.log(updatedRects[i], i)
+                    ////console.log(updatedRects[i], i)
                     updatedRects[i-1].index = i;
                     
                 }
-                //console.log(updatedRects);
+                ////console.log(updatedRects);
                 setRectangles(updatedRects);
                 setRectChange(true);
                 break;
             //LEFT ARROW
             case "ArrowLeft":
-                console.log("leftarr")
+                //console.log("leftarr")
                 onPrevClick();
                 break;
             // RIGHT ARROW
@@ -753,9 +756,9 @@ export const TaskAnnotator = () => {
         await fetch("http://127.0.0.1:8081/apply_tesseract_ocr", requestOptions)
         .then(response => response.json())
         .then(result => {
-            console.log(result)
+            //console.log(result)
             let ocrResult = result["result"];
-            console.log(ocrResult);
+            //console.log(ocrResult);
             let newRectangles = rectangles
             for(let item of ocrResult) {
                 const newRectangle = {
@@ -774,7 +777,7 @@ export const TaskAnnotator = () => {
                     deleted: false,
                     textfocused: false,
                 };
-                console.log(newRectangle);
+                //console.log(newRectangle);
                 rectangles.push(newRectangle);
             }
             setRectangles(newRectangles);
@@ -802,9 +805,9 @@ export const TaskAnnotator = () => {
             return response.json()
         })
         .then(async (data) => {
-            console.log(data)
+            //console.log(data)
             let ocrResult = data["result"];
-            console.log(ocrResult);
+            //console.log(ocrResult);
             let newRectangles = rectangles
             for(let item of ocrResult) {
                 const newRectangle = {
@@ -823,7 +826,7 @@ export const TaskAnnotator = () => {
                     deleted: false,
                     textfocused: false,
                 };
-                console.log(newRectangle);
+                //console.log(newRectangle);
                 rectangles.push(newRectangle);
             }
             setRectangles(newRectangles);
@@ -870,7 +873,7 @@ export const TaskAnnotator = () => {
             if(!response.ok) {
                 throw new Error("Error on task labels save");
             }
-            console.log("Salvato tutto");
+            //console.log("Salvato tutto");
         })
         .finally(() => {
             setIsSavingAll(false);
@@ -902,7 +905,7 @@ export const TaskAnnotator = () => {
             if(!response.ok) {
                 throw new Error("Error on task labels save");
             }
-            console.log("Salvato tutto");
+            //console.log("Salvato tutto");
         })
         .finally(() => {
             setIsSavingAll(false);
@@ -910,7 +913,7 @@ export const TaskAnnotator = () => {
     }
 
     const handleImageSlider = (e) => {
-        console.log(e.target.value);
+        //console.log(e.target.value);
         setCurrentImageId(e.target.value);
         cookies.set("lastImageId", e.target.value, { path: '/' });
         cookies.set("lastTaskId", task_id, { path: '/' })

@@ -12,7 +12,7 @@ const fs = require("fs");
 
 router.post("/create_project", async (req, res) => {
     const {username, projectName, labelsObjList} = req.body;
-    console.log("Chiamata API /create_project")
+    //console.log("Chiamata API /create_project")
     try {
         // Find the user by username using Mongoose
         const existingUser = await User.findOne({ username });
@@ -51,7 +51,7 @@ router.post("/create_project", async (req, res) => {
 
 router.post("/delete_project", async (req, res) => {
     const {project_id, user_id} = req.body;
-    console.log("Richiesta cancellazione progetto con id ", project_id)
+    //console.log("Richiesta cancellazione progetto con id ", project_id)
 
     try {
         const projectToDelete = await Project.findById(project_id);
@@ -59,7 +59,7 @@ router.post("/delete_project", async (req, res) => {
         if (!projectToDelete) {
             return res.status(404).json({ message: 'Project not found' });
         }
-        console.log("userid", user_id, projectToDelete.user_id);
+        //console.log("userid", user_id, projectToDelete.user_id);
         if(user_id!=projectToDelete.user_id) {
             return res.status(401).json({message: 'You\'re not the owner of the project'})
         }
@@ -69,11 +69,11 @@ router.post("/delete_project", async (req, res) => {
         await Project.deleteOne({ _id: project_id });
         try {
             let project_folder_path = __dirname + '/../storage/project_data/' + project_id ;
-            console.log("cancello folder ", project_folder_path)
+            //console.log("cancello folder ", project_folder_path)
             storageController.deleteFolderRecursiveSync(project_folder_path);
         }
         catch {
-            console.log("Niente foto da cancellare");
+            //console.log("Niente foto da cancellare");
         }
         res.status(200).json({ message: 'Project deletion successful' });
     } catch (error){
@@ -84,7 +84,7 @@ router.post("/delete_project", async (req, res) => {
 
 router.post("/update_project_description", async (req, res) => {
     const {project_id, description} = req.body;
-    console.log("Richiesto update descrizione progetto");
+    //console.log("Richiesto update descrizione progetto");
     try {
         const projectToUpdate = await Project.findById(project_id);
 
@@ -104,7 +104,7 @@ router.post("/update_project_description", async (req, res) => {
 
 router.post("/update_project_labels", async (req, res) => {
     const {project_id, labelsList} = req.body;
-    console.log("Richiesto update etichette progetto");
+    //console.log("Richiesto update etichette progetto");
     try {
         // Find the project by its ID using Mongoose
         const projectToUpdate = await Project.findById(project_id);
@@ -125,7 +125,7 @@ router.post("/update_project_labels", async (req, res) => {
 
 router.post("/publish_project", async (req, res) => {
     const {project_id} = req.body;
-    console.log("Richiesto pubblicazione progetto");
+    //console.log("Richiesto pubblicazione progetto");
     try {
         const projectToUpdate = await Project.findById(project_id);
 
@@ -145,7 +145,7 @@ router.post("/publish_project", async (req, res) => {
 
 router.post("/private_project", async (req, res) => {
     const {project_id} = req.body;
-    console.log("Richiesto privatizzazione progetto");
+    //console.log("Richiesto privatizzazione progetto");
     try {
         const projectToUpdate = await Project.findById(project_id);
 
@@ -164,7 +164,7 @@ router.post("/private_project", async (req, res) => {
 }) 
 
 router.post("/get_project_info", async (req, res) => {
-    console.log('Richieste info progetto');
+    //console.log('Richieste info progetto');
     const { project_id } = req.body;
     try {
         // Find the project by its ID using Mongoose
@@ -183,7 +183,7 @@ router.post("/get_project_info", async (req, res) => {
 
 router.post("/get_projects", async (req, res) => {
     const {username} = req.body;
-    console.log(username, "ha richiesto i suoi progetti");
+    //console.log(username, "ha richiesto i suoi progetti");
 
     try {
         const existingUser = await User.findOne({ username });
@@ -199,26 +199,26 @@ router.post("/get_projects", async (req, res) => {
                 continue;
             let project_id = project._id;
             let storedImage = ""
-            console.log("Ricerca thumbnail progetto ", project_id)
+            //console.log("Ricerca thumbnail progetto ", project_id)
             const uploadPathProject = __dirname+'/../storage/project_data/' + project_id;
-            console.log("Path completo", uploadPathProject);
+            //console.log("Path completo", uploadPathProject);
             let uploadPathTaskList = []
             try {
                 uploadPathTaskList = fs.readdirSync(uploadPathProject);
             } catch(error) {
-                console.log(error)
-                console.log("Nessuna cartella per il progetto ", project_id);
+                //console.log(error)
+                //console.log("Nessuna cartella per il progetto ", project_id);
             }
 
             if(uploadPathTaskList.length>0) {
                 for(let uploadPathTask of uploadPathTaskList) {
                     try {
                         storedImage = await storageController.loadFirstImage(path.join(uploadPathProject, uploadPathTask));
-                        console.log(uploadPathTask," piena");
+                        //console.log(uploadPathTask," piena");
                         break;
                     }
                     catch {
-                        console.log(uploadPathTask," vuota");
+                        //console.log(uploadPathTask," vuota");
                     }
                 }
             }
@@ -237,14 +237,14 @@ router.post("/get_projects", async (req, res) => {
                                "projects_list": projectsList});
 
     } catch (error){
-        console.log("Fallito fetch dei progetti")
+        //console.log("Fallito fetch dei progetti")
         console.error('Error:', error);
         res.status(500).json({ message: 'Project retrieval failed' });
     }
 });
 
 router.post("/get_public_projects", async (req, res) => {
-    console.log("Richiesta lista dei progetti pubblici");
+    //console.log("Richiesta lista dei progetti pubblici");
 
     try {
         const projectsList = await Project.find({ public: true });
@@ -254,26 +254,26 @@ router.post("/get_public_projects", async (req, res) => {
                 continue;
             let project_id = project._id;
             let storedImage = ""
-            console.log("Ricerca thumbnail progetto ", project_id)
+            //console.log("Ricerca thumbnail progetto ", project_id)
             const uploadPathProject = __dirname+'/../storage/project_data/' + project_id;
-            console.log("Path completo", uploadPathProject);
+            //console.log("Path completo", uploadPathProject);
             let uploadPathTaskList = []
             try {
                 uploadPathTaskList = fs.readdirSync(uploadPathProject);
             } catch(error) {
-                console.log(error)
-                console.log("Nessuna cartella per il progetto ", project_id);
+                //console.log(error)
+                //console.log("Nessuna cartella per il progetto ", project_id);
             }
 
             if(uploadPathTaskList.length>0) {
                 for(let uploadPathTask of uploadPathTaskList) {
                     try {
                         storedImage = await storageController.loadFirstImage(path.join(uploadPathProject, uploadPathTask));
-                        console.log(uploadPathTask," piena");
+                        //console.log(uploadPathTask," piena");
                         break;
                     }
                     catch {
-                        console.log(uploadPathTask," vuota");
+                        //console.log(uploadPathTask," vuota");
                     }
                 }
             }
@@ -292,7 +292,7 @@ router.post("/get_public_projects", async (req, res) => {
                                "projects_list": projectsList});
 
     } catch (error){
-        console.log("Fallito fetch dei progetti")
+        //console.log("Fallito fetch dei progetti")
         console.error('Error:', error);
         res.status(500).json({ message: 'Project retrieval failed' });
     }

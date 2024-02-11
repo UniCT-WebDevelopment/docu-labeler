@@ -17,7 +17,7 @@ export const TaskCard = (params) => {
   const task_id = task_info._id;
 
   const get_task_annotations = async () => {
-      console.log("GET TASK ANNOTATIONS")
+      ////console.log("GET TASK ANNOTATIONS")
       await fetch(`http://${apiAddress}/annotation/get_task_annotations_export`, {
         method: 'POST',
         headers: {
@@ -36,7 +36,7 @@ export const TaskCard = (params) => {
 const get_task_images = async () => {
   let images = [];
   let total_images = 0;
-  console.log("Richiesto numero di immagini per il task");
+  ////console.log("Richiesto numero di immagini per il task");
   await fetch(`http://${apiAddress}/task/get_task_images_len`, {
       method: 'POST',
       headers: {
@@ -51,10 +51,10 @@ const get_task_images = async () => {
       total_images = data.task_images;
   })
   .then(async ()=> {
-    console.log("Numero immagini", total_images);
+    ////console.log("Numero immagini", total_images);
     for(let i = 0; i<total_images; i++) {
       const currentImageId = i.toString();
-      console.log("Richiesta immagine task numero", i);
+      ////console.log("Richiesta immagine task numero", i);
       await fetch(`http://${apiAddress}/task/get_task_image`, {
           method: 'POST',
           headers: {
@@ -76,7 +76,7 @@ const get_task_images = async () => {
       });
   }
   });
-  console.log("Totale immagini!", total_images);
+  ////console.log("Totale immagini!", total_images);
   setTaskImages(images);
   
 }

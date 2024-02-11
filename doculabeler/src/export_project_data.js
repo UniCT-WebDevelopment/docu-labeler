@@ -29,7 +29,7 @@ export const ExportProjectDataPage = (params) => {
     }
 
     useEffect(() => {
-        //console.log(downloadedImagesCount, imagesTotal)
+        ////console.log(downloadedImagesCount, imagesTotal)
         if (downloadedImagesCount === imagesTotal && imagesTotal!=0) {
           // All images have been downloaded
           setTaskImages(taskImagesTmp);
@@ -39,7 +39,7 @@ export const ExportProjectDataPage = (params) => {
 
     useEffect( ()=> {
         if(Object.keys(params.projectData).length !== 0) {
-            console.log("Scaricati dati progetto", params.projectData)
+            ////console.log("Scaricati dati progetto", params.projectData)
             // Inizializza zip e taskImagesTmp
             zip = new JSZip();
             taskImagesTmp = []
@@ -56,14 +56,14 @@ export const ExportProjectDataPage = (params) => {
             }
             setImagesTotal(imagesTmp);
             if (selectedFormat === "Raw JSON") {
-                console.log("Params!!!", params)
+                ////console.log("Params!!!", params)
                 for(let taskData of params.projectData) {
                     const filenames = taskData.filenames;
 
                     const jsonBlob = new Blob([JSON.stringify(taskData)], {
                         type: "application/json",
                       });
-                    console.log(taskData.title+".json")
+                    //(taskData.title+".json")
                     zip.file(taskData.title+".json", jsonBlob)
                     setAnnotationExportState(true)
                     if(checkbox.checked) {
@@ -100,7 +100,7 @@ export const ExportProjectDataPage = (params) => {
                             let rateo = width/400;
                             const label_id= (item.label in label_name_idx ? label_name_idx[item.label] : Object.keys(label_name_idx).length)
                             let [x, y, w, h] = [(item.x-x_offset)*rateo, item.y*rateo, item.width*rateo, item.height*rateo];
-                            console.log("Coords:",x ,y, w, h)
+                            ////console.log("Coords:",x ,y, w, h)
                             const x2 = Math.max(0, Math.min(x+w, width));
                             const y2 = Math.max(0, Math.min(y+h, height));
                             // Limita coordinate in modo che non escano dai bordi dell'immagine
@@ -127,17 +127,17 @@ export const ExportProjectDataPage = (params) => {
                 
             }
             // Notifica che ho finito di esportare le etichette
-            console.log("Finito export etichette");
+            ////console.log("Finito export etichette");
             setAnnotationExportState(true);
         }
     },
     [params.projectData])
 
     useEffect(() => {
-        console.log("Totale immagini", taskImages.length, "su", imagesTotal);
-        console.log(taskImages);
+        ////console.log("Totale immagini", taskImages.length, "su", imagesTotal);
+        ////console.log(taskImages);
         if(taskImages.length == imagesTotal && imagesTotal!=0) {
-            console.log("Ho finito di scaricare le immagini");
+            ////console.log("Ho finito di scaricare le immagini");
             for(let image of taskImages) {
                 zip.file(image.filename, image.img);
             }
@@ -146,9 +146,9 @@ export const ExportProjectDataPage = (params) => {
     }, [taskImages])
 
     useEffect( () => {
-        console.log("Stato annot. e imm.", hasAnnotationExportFinished, hasImageExportFinished)
+        ////console.log("Stato annot. e imm.", hasAnnotationExportFinished, hasImageExportFinished)
         if (hasAnnotationExportFinished && hasImageExportFinished) {
-            console.log("Finito export annotazioni e immagini!")
+            ////console.log("Finito export annotazioni e immagini!")
             zip.generateAsync({ type: "blob" }).then((content) => {
                 // Create a download link for the zip archive
                 const url = window.URL.createObjectURL(content);

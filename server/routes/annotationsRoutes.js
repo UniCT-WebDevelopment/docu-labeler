@@ -49,7 +49,7 @@ router.post("/save_task_annotations", async (req, res) => {
                 "filenames_info": imgDimensions,
                 "annotations": imageRectanglesDict,
             });
-            console.log("Sto per salvare nuove etichette");
+            //console.log("Sto per salvare nuove etichette");
             await newTaskLabels.save();
 
             currTask.total_images = filenames.length;
@@ -64,7 +64,7 @@ router.post("/save_task_annotations", async (req, res) => {
             }
             currTask.ok_annotation = done;
             currTask.missing_annotations = missing;
-            console.log("done e missing primo salvataggio", done, missing)
+            //console.log("done e missing primo salvataggio", done, missing)
             await currTask.save();
 
             let currentProject = await Project.findOne({"_id": ObjectId(project_id)});
@@ -72,7 +72,7 @@ router.post("/save_task_annotations", async (req, res) => {
             currentProject.missing_annotations -= done;
             currentProject.save();
             
-            console.log("Ho salvato");
+            //console.log("Ho salvato");
         } 
         // Esiste già una vecchia versione delle etichette.
         else {
@@ -141,7 +141,7 @@ router.post("/save_task_annotations", async (req, res) => {
 
             const doneDelta = done - prevDone;
             const missingDelta = missing - prevMissing;
-            console.log("done e missing", done, missing, "delta", doneDelta, missingDelta);
+            //console.log("done e missing", done, missing, "delta", doneDelta, missingDelta);
             let currentProject = await Project.findOne({"_id": ObjectId(project_id)});
             currentProject.ok_annotations += doneDelta;
             currentProject.missing_annotations += missingDelta;
@@ -157,26 +157,26 @@ router.post("/save_task_annotations", async (req, res) => {
         
         res.status(200).json({"message": "Task Labels have been saved successfully"})
     } catch (error) {
-        console.log("Errore", error);
+        //console.log("Errore", error);
         res.status(500).json({"message": "Internal server error"})
     } 
 })
 
 router.post("/get_task_annotations", async (req, res) => {
     const {project_id, task_id} = req.body;
-    console.log("Chiamata API get_task_annotations");
+    //console.log("Chiamata API get_task_annotations");
     try {
         const currentTaskLabels = await TaskAnnotations.findOne({"task_id": task_id});
         res.status(200).json(currentTaskLabels)
     } catch (error){
-        console.log("Errore recupero annotazioni", error)
+        //console.log("Errore recupero annotazioni", error)
         res.status(500).json({"message": "Internal server error"})
     } 
 })
 
 router.post("/get_task_annotations_export", async (req, res) => {
     const {project_id, task_id} = req.body;
-    console.log("Chiamata API get_task_annotations");
+    //console.log("Chiamata API get_task_annotations");
     try {
         const currentProject = await Project.findOne({"_id": ObjectId(project_id)});
         const projectLabels = currentProject.labels;
@@ -187,7 +187,7 @@ router.post("/get_task_annotations_export", async (req, res) => {
                                 "filenames_info": currentTaskLabels.filenames_info}
         res.status(200).json(exportTaskLabels)
     } catch (error){
-        console.log("Errore recupero annotazioni", error)
+        //console.log("Errore recupero annotazioni", error)
         res.status(500).json({"message": "Internal server error"})
     } finally {
     }
@@ -195,14 +195,14 @@ router.post("/get_task_annotations_export", async (req, res) => {
 
 router.post("/get_project_annotations_export", async (req, res) => {
     const {project_id} = req.body;
-    console.log("Chiamata API /get_project_annotations_export");
+    //console.log("Chiamata API /get_project_annotations_export");
     try {
         const currentProject = await Project.findOne({"_id": ObjectId(project_id)});
         const projectLabels = currentProject.labels;
         const taskLabelsList = await TaskAnnotations.find({"project_id": ObjectId(project_id)});
         let exportProjectLabels = []
         if(taskLabelsList.length>0){
-          console.log("Nessuna annotazione");
+          //console.log("Nessuna annotazione");
           res.status(200).json({"message": "No annotations available"});  
         }
         for (const taskLabels of taskLabelsList) {
@@ -221,7 +221,7 @@ router.post("/get_project_annotations_export", async (req, res) => {
 
         res.status(200).json(exportProjectLabels)
     } catch (error){
-        console.log("Errore recupero annotazioni", error)
+        //console.log("Errore recupero annotazioni", error)
         res.status(500).json({"message": "Internal server error"})
     } finally {
     }
@@ -229,7 +229,7 @@ router.post("/get_project_annotations_export", async (req, res) => {
 
 router.post("/get_image_ocr", async(req, res) => {
     const {project_id, task_id, currentImageId} = req.body;
-    console.log("Richiesta OCR su immagine", project_id, task_id, currentImageId);
+    //console.log("Richiesta OCR su immagine", project_id, task_id, currentImageId);
     const projects_dir = path.join(__dirname, "../storage/project_data");
     const img_dir = path.join(projects_dir, project_id, task_id);
     const config = {
@@ -284,7 +284,7 @@ router.post("/get_image_ocr", async(req, res) => {
                 }
             }
             });
-            console.log(ocrResult[3])
+            //console.log(ocrResult[3])
             res.status(200).json({"result": ocrResult})
         })
         .catch((error) => {
@@ -292,7 +292,7 @@ router.post("/get_image_ocr", async(req, res) => {
         });
     }
     catch (error) {
-        console.log("Error on image file retrieval:", error)
+        //console.log("Error on image file retrieval:", error)
     }
 })
 

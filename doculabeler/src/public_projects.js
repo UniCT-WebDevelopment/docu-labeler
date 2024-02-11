@@ -20,7 +20,7 @@ export async function fetchPublicProjects() {
       .then(async response => await response.json())
       .then(data => {
         currPublicProjects = data.projects_list;
-        console.log("Ecco i progetti recuperati!", currPublicProjects);
+        //console.log("Ecco i progetti recuperati!", currPublicProjects);
     })
 };
 
@@ -33,7 +33,7 @@ export const PublicProjectsPage = () => {
 
     useEffect(() => {
         if(localStorage.getItem("username")==="") {
-            console.log("Logged in as guest");
+            //console.log("Logged in as guest");
             setGuestMode(true);
         }
     })
@@ -95,7 +95,7 @@ export const PublicProjectsPage = () => {
                         setPublicProjects(currPublicProjects);
                     })
                     .catch((error) => {
-                        console.log("Error fetching user projects", error);
+                        //console.log("Error fetching user projects", error);
                     })
                     .finally((e) => {
                         setIsLoading(false);

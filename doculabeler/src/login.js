@@ -37,20 +37,20 @@ const LoginComponent = () => {
             });
             const data = await response.json();
             if (response.ok) {
-                console.log("OK!!");
-                console.log(data);
+                ////console.log("OK!");
+                ////console.log(data);
                 localStorage.setItem('jwt', data.jwt);
                 localStorage.setItem('username', formData.username);
                 setIsLoading(false);
                 navigate("/projects");
             } else {
                 setIsLoading(false);
-                console.log("KO!", data);
+                ////console.log("KO!", data);
                 loginErrorMessage.innerText = data.message;
             }
         } catch (error) {
             setIsLoading(false);
-            console.log("ERRORE!!");
+            ////console.log("ERRORE!");
         }
     };
 
@@ -68,20 +68,20 @@ const LoginComponent = () => {
             });
             const data = await response.json();
             if (response.ok) {
-                console.log("OK!!");
-                console.log(data);
+                ////console.log("OK!");
+                ////console.log(data);
                 localStorage.setItem('jwt', data.jwt);
                 localStorage.setItem('username', "");
                 setIsLoading(false);
                 navigate("/projects/public");
             } else {
                 setIsLoading(false);
-                console.log("KO!", data);
+                ////console.log("KO!", data);
                 loginErrorMessage.innerText = data.message;
             }
         } catch (error) {
             setIsLoading(false);
-            console.log("ERRORE!!");
+            ////console.log("ERRORE!");
         }
     };
 

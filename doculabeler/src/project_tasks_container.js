@@ -63,7 +63,7 @@ export const ProjectTasksContainer = (params) => {
     }
 
     const handleTaskCreationConfirm = async () => {
-        console.log(droppedFiles);
+        ////console.log(droppedFiles);
         let error_message = document.getElementById("task-name-error") 
         const task_name_input = document.getElementById("task-name-container");
         const create_task_grid = document.getElementById("create-task-grid");
@@ -146,8 +146,8 @@ export const ProjectTasksContainer = (params) => {
     } 
 
     const handleTaskDelete = (task_id) => {
-        console.log("Delete!", task_id);
-        console.log(projectTasks);
+        ////console.log("Delete!", task_id);
+        ////console.log(projectTasks);
         let updatedProjectTasks = projectTasks.filter((task) => task._id != task_id);
         setProjectTasks(updatedProjectTasks);
         deleteTask(task_id);
@@ -155,7 +155,7 @@ export const ProjectTasksContainer = (params) => {
     
     async function getProjectTasks(project_id) {
         setIsLoading(true)
-        console.log("Richiesti task per ", project_id);
+        ////console.log("Richiesti task per ", project_id);
         const formData = new URLSearchParams();
         formData.append('project_id', project_id);
         await fetch(`http://${apiAddress}/task/get_project_tasks`, {
@@ -174,7 +174,7 @@ export const ProjectTasksContainer = (params) => {
             const taskThumbnailUrl = URL.createObjectURL(thumbnailBlob);
             task.thumbnailUrl = taskThumbnailUrl;
           }
-          //console.log("Task correnti!!", currentTasks);
+          ////console.log("Task correnti!!", currentTasks);
           let project_info = data.project_info;
           setProjectTasks(currentTasks);
           setLabelsList(project_info.labels);
@@ -194,7 +194,7 @@ export const ProjectTasksContainer = (params) => {
       const descriptionBox = document.getElementById("project-info-description-box");
       descriptionBox.contentEditable = "false";
       const description = descriptionBox.innerText;
-      console.log("Descrizione!", description);
+      ////console.log("Descrizione!", description);
       const response = await fetch(`http://${apiAddress}/project/update_project_description`, {
           method: "POST",
           headers: {
@@ -213,7 +213,7 @@ export const ProjectTasksContainer = (params) => {
         const newLabelElement = document.querySelector(".new-label-form>div>input");
         const labelError = document.getElementById("label-name-error");
         const newLabelName = newLabelElement.value.trim();
-        console.log("Nuova etichetta", newLabelName)
+        ////console.log("Nuova etichetta", newLabelName)
         if(newLabelName.length == 0) {
             newLabelElement.setAttribute("style", 
             "border: 1px solid red; background-color:rgba(255,0,0,0.15);");
@@ -251,7 +251,7 @@ export const ProjectTasksContainer = (params) => {
     //Parte quando vengono aggiornate le etichette
     useEffect(() => {
       if(projectInfo.labels!==undefined && labelsList!==undefined && projectInfo.labels.length != labelsList.length) {
-        console.log("Aggiunta etichetta")
+        ////console.log("Aggiunta etichetta")
         const formData = new URLSearchParams();
         formData.append('project_id', project_id);
         formData.append('labelsList', JSON.stringify(labelsList));

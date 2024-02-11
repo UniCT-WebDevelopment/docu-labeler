@@ -35,7 +35,7 @@ export const CreateProjectLabelContainer = (params) => {
         const newLabelElement = document.querySelector(".new-label-form>div>input");
         const labelError = document.getElementById("label-name-error");
         const newLabelName = newLabelElement.value.trim();
-        console.log("Nuova etichetta", newLabelName)
+        ////console.log("Nuova etichetta", newLabelName)
         if(newLabelName.length == 0) {
             newLabelElement.setAttribute("style", 
             "border: 1px solid red; background-color:rgba(255,0,0,0.15);");
@@ -52,7 +52,7 @@ export const CreateProjectLabelContainer = (params) => {
             }
         }
 
-        console.log(newLabelName);
+        ////console.log(newLabelName);
         setCreateLabelState(false)
         setColorWidgetState(false)
         labelsList.push({

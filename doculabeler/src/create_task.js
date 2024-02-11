@@ -3,8 +3,8 @@
 let dropped_files = [];
 
 export const CreateTaskPage = (params) => {
-    console.log("Creo task page, ecco project ID");
-    console.log(params.project_id);
+    ////console.log("Creo task page, ecco project ID");
+    ////console.log(params.project_id);
     const cancelCreateTask = params.onCreationEnd;  
     const confirmCreateTask = params.onCreationConfirm;
   

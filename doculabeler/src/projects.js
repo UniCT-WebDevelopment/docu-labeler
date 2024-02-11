@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import load_icon from "./img/loader.png"
 
 const apiAddress = process.env.REACT_APP_.DOCULABELER_API_ADDRESS;
-console.log("ADDR API!!", apiAddress)
+//console.log("ADDR API!!", apiAddress)
 
 export var currUserProjects = []
 export async function fetchUserProjects() {
@@ -22,8 +22,8 @@ export async function fetchUserProjects() {
       .then(async response => await response.json())
       .then(data => {
         currUserProjects = data.projects_list;
-        console.log("Ecco i progetti recuperati!", currUserProjects);
-        console.log("Base64", currUserProjects.thumbnail);
+        ////console.log("Ecco i progetti recuperati!", currUserProjects);
+        ////console.log("Base64", currUserProjects.thumbnail);
     })
 };
 
@@ -47,9 +47,9 @@ export const ProjectsPage = () => {
     }, [])
 
     useEffect(() => {
-        console.log("Username!!", localStorage.getItem("username"))
+        ////console.log("Username!!", localStorage.getItem("username"))
         if(localStorage.getItem("username")==="") {
-            console.log("Logged in as guest");
+            ////console.log("Logged in as guest");
             setGuestMode(true);
         }
     })
@@ -99,7 +99,7 @@ export const ProjectsPage = () => {
                         setUserProjects(currUserProjects);
                     })
                     .catch((error) => {
-                        console.log("Error fetching user projects", error);
+                        ////console.log("Error fetching user projects", error);
                     })
                     .finally((e) => {
                         setIsLoading(false);

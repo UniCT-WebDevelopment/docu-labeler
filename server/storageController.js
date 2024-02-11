@@ -44,7 +44,7 @@ const storeTaskFiles = async(project_id, task_id, files) => {
       const filePromises = files.map(async (file) => {
           const fileName = file.name;
           const filePath = path.join(uploadPathTask, fileName);
-          //console.log("Path file!!", filePath);
+          ////console.log("Path file!!", filePath);
 
           return new Promise((resolve, reject) => {
               file.mv(filePath, (err) => {
@@ -52,7 +52,7 @@ const storeTaskFiles = async(project_id, task_id, files) => {
                       console.error('Error uploading file:', err);
                       reject(err);
                   } else {
-                      console.log(`File ${fileName} uploaded successfully.`);
+                      //console.log(`File ${fileName} uploaded successfully.`);
                       resolve(filePath);
                   }
               });
@@ -68,7 +68,7 @@ const storeTaskFiles = async(project_id, task_id, files) => {
 
 async function findDir(path, query) {
   fs.readdirSync(path).forEach((dir) => {
-    console.log("query path", query, path);
+    //console.log("query path", query, path);
       if(dir==query) {
           return true
       }

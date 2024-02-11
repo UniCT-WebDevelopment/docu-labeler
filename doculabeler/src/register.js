@@ -17,7 +17,7 @@ export const RegisterComponent = () => {
         else if (error_target == "list"){
             let psw_error_msg = error_message.filter((msg)=>msg.path=="password").map((msg)=>msg.msg).join('\n')
             let usr_error_msg = error_message.filter((msg)=>msg.path=="username").map((msg)=>msg.msg).join('\n')
-            console.log(usr_error_msg);
+            //console.log(usr_error_msg);
             password_error_el.innerHTML = psw_error_msg;
             username_error_el.innerHTML = usr_error_msg;    
         }
@@ -41,17 +41,17 @@ export const RegisterComponent = () => {
             });
 
             if (response.ok) {
-                console.log("Login OK!");
+                //console.log("Login OK!");
                 let data = await response.json();
                 localStorage.setItem('jwt', data.jwt);
                 localStorage.setItem('username', username);
                 setIsLoading(false);
                 navigate("/projects");
             } else {
-                console.log("Login KO!")
+                //console.log("Login KO!")
             }
         } catch (error) {
-            console.log("Login ERRORE!")
+            //console.log("Login ERRORE!")
         }
     };
     const handleSubmit = async (e) => {

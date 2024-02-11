@@ -26,7 +26,7 @@ export const ExportTaskDataPage = (params) => {
         zip.file(filename, img);
         //updatedTaskImages.push({"filename": filename, "img": img})
         if(imagesTotal!=0 && taskImagesTmp.length==imagesTotal) {
-            console.log("Set task Images!!!", taskImagesTmp.length, imagesTotal);
+            ////console.log("Set task Images!!!", taskImagesTmp.length, imagesTotal);
             setTaskImages(taskImagesTmp);
         }
     }
@@ -118,10 +118,10 @@ export const ExportTaskDataPage = (params) => {
     [params.taskData])
 
     useEffect(() => {
-        console.log("Totale immagini", taskImages.length, "su", imagesTotal);
-        console.log(taskImages);
+        ////console.log("Totale immagini", taskImages.length, "su", imagesTotal);
+        ////console.log(taskImages);
         if(taskImages.length == imagesTotal && imagesTotal!=0) {
-            console.log("Ho finito di scaricare le immagini");
+            ////console.log("Ho finito di scaricare le immagini");
             //for(let image of taskImages) {
             //    zip.file(image.filename, image.img);
             //}
@@ -130,9 +130,9 @@ export const ExportTaskDataPage = (params) => {
     }, [taskImages])
 
     useEffect( () => {
-        console.log("Stato annot. e imm.", hasAnnotationExportFinished, hasImageExportFinished)
+        ////console.log("Stato annot. e imm.", hasAnnotationExportFinished, hasImageExportFinished)
         if (hasAnnotationExportFinished && hasImageExportFinished) {
-            console.log("Finito export annotazioni e immagini!")
+            ////console.log("Finito export annotazioni e immagini!")
             zip.generateAsync({ type: "blob" }).then((content) => {
                 // Create a download link for the zip archive
                 const url = window.URL.createObjectURL(content);
