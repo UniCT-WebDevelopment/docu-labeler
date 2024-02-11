@@ -1,0 +1,63 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@font-face {
+  font-family: 'ReadexPro Medium';
+  src: url('./fonts/ReadexPro/ReadexPro-Medium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'ReadexPro Regular';
+  src: url('./fonts/ReadexPro/ReadexPro-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'ReadexPro Bold';
+  src: url('./fonts/ReadexPro/ReadexPro-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'ReadexPro Light';
+  src: url('./fonts/ReadexPro/ReadexPro-Light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'ReadexPro ExtraLight';
+  src: url('./fonts/ReadexPro/ReadexPro-ExtraLight.ttf') format('truetype');
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -1,0 +1,94 @@
+body {
+    font-family: 'ReadexPro Light', sans-serif;
+    margin: 0px;
+    /*background: radial-gradient(circle at top, #191B1B , #32BA7C);
+    background-image: url(img/gradient.png);*/
+
+}
+
+h2 {
+    font-family: 'ReadexPro Regular'
+}
+
+#root {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+#register-component {
+    margin: 100px 0px;
+    background-color: #ffffff;
+    border-radius: 20px;
+    color: #191B1B;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    grid-column: 2;
+}
+
+
+#register-form {
+    font-family: 'ReadexPro Light', sans-serif;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 80%;
+}
+
+#register-username, #register-password, #register-password-confirm {
+    font-family: inherit;
+
+    background: rgba(0,0,0,0);
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    border-bottom: solid 1px #aaaaaa;
+    font-size: large;
+    margin: 10px 0px 11px 0px;
+    width: 100%;
+    height: 50px;
+}
+
+#register-username:focus, #register-password:focus, #register-password-confirm:focus{
+    outline-width: 0;
+    margin: 10px 0px 10px 0px;
+    border-bottom: solid 2px #2b2b2b;
+}
+
+
+#register-submit {
+    font-family: inherit;
+    color: #f3f3f3; 
+    font-size: large;
+    margin: 20px 0px 40px 0px;
+    border-radius: 10px;
+    background: #191B1B;
+    border: 0;
+    height: 50px;
+}
+
+#register-submit:hover {
+    transition: background-color 200ms linear;
+    background: #000000;
+    color: #ffffff;
+}
+
+#register-footer {
+    margin-bottom: 30px;
+}
+
+#register-username-error, #register-password-error {
+    font-size: small;
+    color: red;
+}
+
+#register-linebreak {
+    width: 80%;
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 0px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}

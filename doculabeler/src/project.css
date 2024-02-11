@@ -1,0 +1,1610 @@
+@font-face {
+    font-family: 'ReadexPro Medium';
+    src: url('./fonts/ReadexPro/ReadexPro-Medium.ttf') format('truetype');
+}
+  
+@font-face {
+    font-family: 'ReadexPro Regular';
+    src: url('./fonts/ReadexPro/ReadexPro-Regular.ttf') format('truetype');
+}
+  
+@font-face {
+    font-family: 'ReadexPro Bold';
+    src: url('./fonts/ReadexPro/ReadexPro-Bold.ttf') format('truetype');
+}
+  
+@font-face {  
+    font-family: 'ReadexPro Light';
+    src: url('./fonts/ReadexPro/ReadexPro-Light.ttf') format('truetype');
+}
+  
+@font-face {
+    font-family: 'ReadexPro ExtraLight';
+    src: url('./fonts/ReadexPro/ReadexPro-ExtraLight.ttf') format('truetype');
+}
+  
+body {
+    font-family: 'ReadexPro Light', sans-serif;
+    background-color: #121212;
+    margin: 0px;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #3f3f3f;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #191b1b;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+svg:focus {
+    outline-width: 0;
+}
+
+.prevent-select {
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+}
+
+.svgText {
+    pointer-events: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.collapsed {
+    height: 0px;
+    overflow: hidden;
+}
+
+#p-page-container {
+    grid-column: 1/4;
+}
+
+h1, h2, h3, h4 {
+    margin: 0px;
+}
+
+h2 {
+    font-weight:500;
+
+}
+
+h4 {
+    margin: 0px 20px;
+    font-weight: 200;
+}
+
+text {
+    font-family: "ReadexPro Light";
+}
+
+#loading-div {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#annotation-loading-div {
+    grid-column: 1/4;
+    display: flex;
+    justify-content: center;
+}
+
+#annotation-loading-icon {
+    margin-top: 200px;
+    width: 75px;
+    animation: rotate 5s linear infinite;
+}
+
+@keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+#loading-icon {
+    position: absolute;
+    margin: 200px;
+    width: 75px;
+    animation: rotate 5s linear infinite;
+    z-index: 10;
+}
+
+#save-task-div {
+    position: relative;
+    padding-top: 5px;
+}
+
+#saving-task-data-icon {
+    position: absolute;    
+    left: 0;
+    animation: rotate 5s linear infinite;
+}
+
+
+#navbar-container {
+    position: relative;
+    display: flex;
+    grid-column: 1/4;
+    justify-content: space-between;
+    background-color: #202020;
+    height: 50px;
+    padding: 0px 10px;
+    box-shadow: 2px 2px 10px black;
+
+    z-index: 4;
+}
+
+#navbar-left {
+    display: flex;
+    height: inherit;
+    gap: 10px;
+    align-items: center;
+    color: #EEF4E8; 
+}
+
+#navbar-right {
+    display: flex;
+    height: inherit;
+    gap: 15px;
+    align-items: center;
+    color: #EEF4E8; 
+}
+
+#create-button, #new-task-button {
+    font-family: 'ReadexPro Regular', sans-serif;
+    font-size: medium;
+    color: #ffffff;
+    background-color: #32BA7C;
+    border-style: none;
+    border-radius: 6px;
+    padding:7px 18px;
+}
+
+
+#create-button:hover {
+    cursor: pointer;
+    background-color: #2ca56e;
+    color: #dddddd;
+
+    font-family: 'ReadexPro Regular';
+}
+
+#new-task-button:hover {
+    cursor: pointer;
+}
+
+#user-button {
+    font-family: 'ReadexPro Light', sans-serif;
+    font-size: medium;
+    color: #FFF;
+    background-color: #D62828;
+    border-style: none;
+    height: 35px;
+    width: 35px;
+    border-radius: 35px;
+}
+
+.project-card-container {
+    position: relative;
+    margin: 40px 80px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 40px;
+  }
+
+.project-card {
+    display: flex;
+    gap:10px;
+    position: relative;
+    justify-content: space-around;
+    padding: 6px 5px 6px 0px;
+    background-color: #ffffff;
+    border-radius: 4px;
+    aspect-ratio: 1.8;
+    box-shadow: 5px 5px 2px #191B1B;
+    border: 2px solid transparent;
+}
+
+.project-card:hover {
+    cursor: pointer;
+    box-shadow: 6px 6px 3px #000000;
+}
+
+.card-info {
+    padding: 10px 0px 0px 0px;
+    flex-grow: 1;
+    max-width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-info-upper {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.card-info-lower {
+    align-content: center;
+}
+
+.card-thumbnail {
+    border-radius: 5px;
+    width: 40%;
+    object-position: 50% 50%;
+    box-shadow: 1px 1px 2px #121212;
+    position: relative;
+}
+
+.project-name-menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.project-menu-button {
+    position: absolute;
+    border: none;
+    background-color: #ffffff;
+    width: 8%;
+    top:5px;
+    right: 0;
+    border-radius: 10px;
+    aspect-ratio: 1;
+    background-image: url(img/three-dots.png);
+    background-size: contain;
+}
+
+.project-menu-button:hover {
+    cursor: pointer;
+}
+
+.project-name {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 90%;
+    font-weight: 600;
+    font-size: large;
+}
+
+.project-name img {
+    margin-bottom: 3px;
+}
+
+.project-creator-name {
+    color:#7e7e7e;
+    font-weight: 300;
+    font-size: small;
+}
+
+.project-task-counter {
+    font-weight: 200;
+    font-size: small;
+}
+
+[class*="project"] {
+    font-family: 'ReadexPro Light', sans-serif;
+}
+
+.project-annotation-counter {
+    font-family: 'ReadexPro Light', sans-serif;
+    font-size: 15px;
+    display: flex;
+    justify-content: space-around;
+}
+
+[class*="-annotations-counter"]::before {
+    content: "\200B";
+    display: inline-block;
+    width: 20px;
+    margin: 0px 5px;
+}
+
+.ok-annotations-counter::before {
+    background: url(img/check.png) no-repeat;
+    margin-right: 10px;
+    background-size: contain;
+}
+
+.missing-annotations-counter::before {
+    background: url(img/close.png) no-repeat;
+    width:17px;
+    margin-right: 10px;
+    background-size: contain;
+}
+
+.card-divisor {
+    margin: 3px 0px;
+    border: solid #d6d6d6 1px;
+    content: "";
+}
+
+.project-creation-date {
+    color:#575757;
+    font-family: 'ReadexPro Light', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    text-align: center;
+}
+
+.dropdown-content {
+    display:none;
+    position: absolute;
+    left: 95%;
+    top: 15%;
+    background-color: #ffffff;
+    box-shadow: 1px 1px 2px black;
+    border-radius: 3px;
+    min-width: 70px;
+    z-index: 2;
+}
+
+.dropdown-content a {
+    border: 1px solid rgb(233, 233, 233);
+    font-family: 'ReadexPro Light', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    display: block;
+    padding: 4px 5px;
+    text-decoration: none;
+}
+
+.task-dropdown-content a {
+    font-family: 'ReadexPro Light';
+    color: black;
+    background-color: #ffffff;
+    font-size: 14x;
+    font-weight: 300;
+    display: block;
+    padding: 5px 3px;
+    text-decoration: none;
+}
+
+.dropdown-content a:hover {
+    font-family: 'ReadexPro Regular';
+    background: #cccccc;
+    border-radius: 3px;
+}
+
+.dropdown-content a:visited {
+    color: black;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.task-dropdown {
+    position: relative;
+    display: flex;
+    flex-direction: row-reverse;
+    width: 100%;
+    
+}
+
+.task-dropdown-content {
+    display:none;
+    position: absolute;
+    left: 95%;
+    top: 15%;
+    background-color: #ffffff;
+    box-shadow: 2px 2px 10px black;
+    border-radius: 2px;
+    min-width: 80px;
+    z-index: 2;
+}
+
+.task-dropdown-content a:hover{
+    font-family: 'ReadexPro Regular';
+    background: #e0e0e0;
+    border-radius: 2px;
+}
+
+.task-dropdown:hover .task-dropdown-content {
+    display: flex;
+    flex-direction: column;
+}
+
+#overlay {
+    position: fixed; /* Fixed position to cover the whole viewport */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(48, 48, 48, 0.7); /* Your semitransparent background color */
+    z-index: 9; /* Ensure it's above other elements */
+}
+
+#overlay:hover {
+    cursor:default;
+}
+
+#create-project-grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin: 50px 0px;
+    padding: 50px 0px;
+    font-family: 'ReadexPro Light', sans-serif;
+    z-index: 10;
+}
+
+#create-project-container {
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    grid-column: 2;
+    min-width: 300px;
+    height: auto;
+    background-color: #fcfcfc;
+    border-radius: 10px;
+    box-shadow: 7px 7px 2px #191B1B;
+    padding: 10px 20px 5px 20px;
+
+}
+
+#create-project-container p{
+    font-size: large;
+    font-family: inherit;
+    margin-bottom: 10px;
+}
+
+#labels-container p {
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+#create-project-label-container{
+    padding: 6px 6px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: baseline;
+    gap: 10px;
+}
+
+.create-project-label {
+    display: flex;
+    align-items: center;
+    gap: 1px;
+    justify-content: space-between;
+    color:rgb(27, 27, 27);
+    font-size: 13px;
+    padding: 5px 7px;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 3px;
+}
+
+#create-proj-text-label-container .new-label-button {
+    color: #FFF;
+    background-color: #32BA7C;
+    font-size: larger;
+    border: none;
+}
+
+.new-label-form {
+    width:100%;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap:5px;
+}
+
+#label-name-error {
+    font-size: small;
+    position: absolute;
+    color: rgb(180, 1, 1);
+}
+
+.new-label-form input {
+    position: relative;
+    border: rgb(182, 182, 182) solid 1px;
+    border-radius: 2px;
+    height:25px;
+    font-size: small;
+}
+
+.new-label-form-task-annotation input {
+    position: relative;
+    border: rgb(182, 182, 182) solid 1px;
+    border-radius: 2px;
+    height:18px;
+    font-size: small;
+}
+
+.new-label-form .new-label-color {
+    border: rgb(182, 182, 182) solid 1px;
+    background-color: white;
+    border-radius: 2px;
+    padding: 5px 5px;
+    margin-right: 20px;
+}
+
+.new-label-form-task-annotation .new-label-color {
+    border: rgb(182, 182, 182) solid 1px;
+    background-color: white;
+    margin-top: 1px;
+    border-radius: 2px;
+    padding: 3px 3px;
+    margin-right: 10px;
+}
+
+#add-label-button {
+    font-family: 'ReadexPro Light', sans-serif;
+    font-size: small;
+    color: #ffffff;
+    background-color: #32BA7C;
+    border-style: none;
+    border-radius: 2px;
+    padding:5px 10px;
+}
+
+#add-label-button:hover,
+#cancel-add-label-button:hover,
+.new-label-form .new-label-color:hover,
+.new-label-form-task-annotation .new-label-color:hover {
+    cursor: pointer;
+}
+
+#cancel-add-label-button {
+    font-family: 'ReadexPro Light', sans-serif;
+    font-size: small;
+    color: #ffffff;
+    background-color: #191B1B;
+    border-style: none;
+    border-radius: 2px;
+    padding:5px 10px;
+}
+
+.compact-picker {
+    position: absolute;
+    right: -193px;
+    top: 14px;
+    background-color: white;
+    border: rgb(182, 182, 182) solid 1px;
+
+}
+
+#create-proj-text-label-container .new-label-button:hover {
+    cursor: pointer;
+    background-color: #2ca56e;
+}
+
+#create-proj-text-label-container {
+    display: flex;
+    flex-direction: row;
+    min-height: 100px;
+    height: auto;
+    border-radius: 4px;
+    border: rgb(182, 182, 182) solid 1px;
+
+}
+
+.input-container {
+    text-align: left;
+}
+
+.input-container input{
+    background-color: inherit;
+    font-family: inherit;
+    font-size: large;
+    box-sizing: border-box;
+    border-radius: 4px;
+    width: 100%;
+    height: 45px;
+    border: 0px;
+    border: rgb(182, 182, 182) solid 1px;
+    padding-left: 10px;
+}
+
+.input-container input:focus {
+    outline-width: 0;
+    border: rgb(15, 15, 15) solid 1px;
+}
+
+.label-color-palette {
+    color: rgba(238, 238, 238, 0);
+    width: 15px;
+    height: 15px;
+}
+
+#create-form-buttons {
+    text-align: right;
+    margin-top: 8px;
+}
+
+#create-form-buttons .confirm-button, #create-form-buttons .cancel-button{
+    font-family: 'ReadexPro Light', sans-serif;
+    width: 25%;
+    margin-left: 8px;
+    font-size: medium;
+    padding: 5px 10px;
+    background-color: #191B1B;
+    color:#EEF4E8;
+    border-radius: 5px;
+    border: none;
+}
+
+#create-form-buttons .confirm-button:hover, .project-task-open-button:hover{
+    transition: background-color 120ms linear;
+    cursor: pointer;
+    background-color: #32BA7C;
+    font-family: 'ReadexPro Regular';
+}
+
+#create-form-buttons .cancel-button:hover {
+    cursor: pointer;
+    transition: background-color 120ms linear;
+    background-color: #D62828;
+    font-family: 'ReadexPro Regular';
+}
+
+#project-name-error {
+    color: #D62828;
+    text-align: left;
+    font-size: small;
+    margin-top: 2px;
+}
+
+#task-name-error {
+    color: #D62828;
+    text-align: left;
+    font-size: small;
+    margin-top: 2px;
+}
+
+#task-to-project-page-btn {
+    display: flex;
+    align-items: center;
+    grid-column: 1/4;
+    gap: 10px;
+    background-color: transparent;
+    color:#ffffff;
+    border: none;
+    margin: 30px 0px 30px 10px;
+}
+
+#task-to-project-page-btn::before {
+    content: "\200B";
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    background: url(img/back_to_project.png) no-repeat;
+    background-size: contain;
+}
+
+#task-to-project-page-btn:hover {
+    cursor: pointer;
+}
+
+#task-to-project-page-btn:hover span {
+    text-decoration: underline;
+}
+
+#task-to-project-page-cnt {
+    font-family: 'ReadexPro Light', sans-serif;
+    font-weight: 200;
+    font-size: 18px;
+}
+
+#project-task-container-component {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+}
+
+#project-info-container, #project-task-container {
+    grid-column: 2;
+    background-color: #ffffff;
+    border-radius: 4px;
+    box-shadow: 5px 5px 5px #191B1B;
+    margin: 10px 0px;
+}
+
+#project-info-labels {
+    font-family: 'ReadexPro Light', sans-serif;
+    font-size:small;
+    color:#191B1B;
+    margin: 0px;
+}
+
+#project-info-label-container {
+    display: flex;
+    flex-wrap: wrap;
+    border: rgb(231, 231, 231) solid 1px;
+    border-radius: 2px;
+    align-items: center;
+    justify-content: baseline;
+    gap: 10px;
+    margin: 5px 20px;
+    padding: 5px 5px;
+}
+
+#project-info-labels-flex {
+    margin: 15px 20px 5px 20px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+#project-info-labels-flex img {
+    padding-bottom: 4px;
+}
+
+#project-info-labels-flex img:hover {
+    cursor: pointer;
+}
+
+#project-info-title {
+    font-family: 'ReadexPro Regular', sans-serif;
+
+    margin: 20px 20px 20px 20px;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+#project-info-owner {
+    font-family: 'ReadexPro Light', sans-serif;
+    font-size:small;
+    color:#575757;
+    margin: 5px 20px;
+}
+
+#project-info-description{
+    font-family: 'ReadexPro Light', sans-serif;
+    font-size:small;
+    color:#191B1B;
+    margin: 0px;
+}
+
+#project-info-description-box{
+    font-family: 'ReadexPro Light', sans-serif;
+    width: calc(100%-40);
+    font-size:small;
+    color:#191B1B;
+    margin: 10px 20px;
+    border: solid rgb(231, 231, 231) 1px;
+    border-radius: 2px;
+}
+
+#project-info-description-container {
+    margin: 10px 20px 5px 20px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+#project-info-description-container img {
+    padding-bottom: 4px;
+}
+
+#project-info-description-container img:hover {
+    cursor: pointer;
+}
+
+
+#project-task-navbar {
+    display: flex;
+    grid-column: 2;
+    flex-direction: row-reverse;
+}
+
+.project-task-container {
+    grid-column: 2;
+}
+
+.project-task-card {
+    display: flex;
+    justify-content: space-between;
+    min-width: 400px;
+    min-height: 100px;
+    height:auto;
+    padding: 5px 0px 5px 10px;
+    margin: 15px 0px;
+    background-color: #ffffff;
+    border-radius: 4px;
+    box-shadow: 5px 5px 2px #191B1B;
+
+}
+
+.project-task-card > div{
+    display: flex;
+}
+
+.task-card-thumbnail {
+    border-radius: 4px;
+    width: 100px;
+    aspect-ratio: 1.0;
+    object-fit: cover;
+    box-shadow: 1px 1px 2px rgba(46, 46, 46, 0.5);
+}
+
+.task-card-base-info {
+    padding: 12px 5px 3px 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.task-title {
+    color: #141414;
+    font-size: large;
+    font-weight: 600;
+}
+
+.task-creator {
+    color:rgb(109, 109, 109);
+    font-size: small;
+    font-weight: 300;
+}
+
+.task-update {
+    color:rgb(109, 109, 109);
+    font-size: small;
+    font-weight: 300;
+}
+
+.project-task-left-side {
+    padding: 0px 0px 5px 0px;
+    flex-direction: column;
+    align-items: end;
+    justify-content: space-between;
+}
+
+.project-task-options-button {
+    border: none;
+    background-color: #ffffff;
+    width: 40%;
+    padding: 0px;
+    top:5px;
+    right: 0;
+    border-radius: 10px;
+    aspect-ratio: 1;
+    background-image: url(img/three-dots.png);
+    background-size: contain;
+}
+
+
+.project-task-open-button {
+    font-family: 'ReadexPro Light', sans-serif;
+    padding: 7px 17px;
+    margin-right: 10px;
+    font-size: medium;
+    background-color: #121212;
+    color:#EEF4E8;
+    border-radius: 4px;
+    border: none;
+}
+
+#create-task-grid {
+    position: absolute;
+    width: 100%;
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    z-index: 10;
+}
+
+#create-task-container {
+    position: relative;
+    z-index: 0;
+    font-family: 'ReadexPro Light', sans-serif;
+    grid-column: 2;
+    background-color: #ffffff;
+    border-radius: 4px;
+    padding: 20px 20px 10px 20px;
+    margin-top: 40px;
+    min-width: 300px;
+}
+
+#create-task-container input{
+    font-family: inherit;
+    font-size: medium;
+    width: 100%;
+    height: 30px;
+    border-radius: 4px;
+    border: rgb(204, 204, 204) solid 1px;
+    padding: 0px 0px 0px 5px;
+    margin: 0;
+}
+
+#create-task-name-helper {
+    margin-top: 20px;
+    margin-bottom: 12px;
+}
+
+#load-files-helper {
+    margin-bottom: 12px;
+}
+
+#load-files-subhelper {
+    color: rgb(143, 143, 143);
+    font-size: small;
+    margin: 4px 0px;
+}
+
+#task-drag-and-drop {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: rgb(204, 204, 204) dashed 1px;
+    border-radius: 4px;
+    background-color: #ffffff;
+    height: 200px;
+    margin-bottom: 8px;
+}
+
+#selected_files_info {
+    font-size: small;
+    list-style: none;
+    color: #575757;
+    padding: 0px 5px;
+    margin: 5px 0px;
+}
+
+#project-task-container-grid {
+    display: grid;
+    grid-column: 1/4;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.card-link {
+    text-decoration: none;
+}
+
+.navbar-path {
+    margin: 0px 8px;
+}
+
+.navbar-path:hover {
+    cursor: pointer;
+}
+
+
+#project-tasks-page {
+    grid-column: 1/4;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+}
+
+#create-task-form-buttons {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+#create-task-form-buttons button {
+    font-family: 'ReadexPro Light', sans-serif;
+    margin-top: 5px;
+    width: 25%;
+    margin-left: 8px;
+    font-size: small;
+    padding: 5px 10px;
+    background-color: #191B1B;
+    color:#EEF4E8;
+    border-radius: 3px;
+    border: none;
+}
+
+#create-task-form-buttons .confirm-button:hover{
+    cursor: pointer;
+    transition: background-color 120ms linear;
+    background-color: #32BA7C;
+    font-family: 'ReadexPro Regular';
+}
+
+#create-task-form-buttons  .cancel-button:hover {
+    cursor: pointer;
+    transition: background-color 120ms linear;
+    background-color: #D62828;
+    font-family: 'ReadexPro Regular';
+}
+
+#no-task-placeholder {
+    font-family: "ReadexPro Regular";
+    color: white;
+    font-size: larger;
+    margin: 12px 0px 10px 0px;
+    grid-column: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    background-color: #ffffff00;
+    color: white;
+    border-radius: 10px;
+    padding: 25px 0px;
+}
+
+#no-task-placeholder-subtxt {
+    font-family: "ReadexPro Light";
+    font-size: medium;
+}
+
+#no-task-placeholder-subtxt b {
+    color: #32ba7c;
+}
+
+#no-task-placeholder img {
+    width: 15%;
+}
+
+
+#task-annotation-main {
+    position: relative;
+    display: grid;
+    grid-column: 1/4;
+    grid-template-columns: 1fr 36fr 1fr; 
+    /* 1fr 36fr 1fr ??? */
+}
+
+#task-annotation-svg {
+    grid-column: 2;
+    background-color: #3f3f3f;
+}
+
+#left-task-annotation-toolbar {
+    position: fixed;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap : 15px;
+    padding-top: 60px;
+    grid-column: 1;
+    width: 50px;
+    top: 0;
+    bottom: 0;
+    background-color: #191B1B;
+    box-shadow: 2px 2px 10px black;
+    z-index: 1;
+}
+
+#left-task-annotation-toolbar-top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 13px;
+}
+
+#right-task-annotation-toolbar {
+    position: fixed;
+    width: 17%;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    gap : 2px;
+    padding-top: 60px;
+    min-width: 100px;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background-color: #191B1B;
+    box-shadow: 2px 2px 10px black;
+    z-index: 1;
+}
+
+.left-toolbar-item {
+    object-fit: contain;
+    border-radius: 4px;
+}
+
+.left-toolbar-item:hover {
+    cursor: pointer;
+    background-color: #3b3b3b;
+}
+
+#bottom-task-annotation-bar {
+    box-shadow: 2px 2px 10px black;
+    background-color: #191b1b;
+    position: fixed;
+    width: 80%;
+    overflow: auto;
+    height: 50px;
+    padding: 7px 20px 5px 20px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 18px;
+    bottom: 0px;
+    left: 50px;
+    right: 0;
+}
+
+#bottom-task-annotation-bar .new-label-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: x-large;
+    width: 30px;
+    height: 25px;
+    border-radius: 4px;
+    padding-bottom: 2px;
+    background-color: #79cb9c;
+    box-shadow: 2px 0px 4px 2px black;
+    color:rgb(255, 255, 255);
+}
+
+#bottom-task-annotation-bar .new-label-btn:hover {
+    cursor: pointer;
+}
+
+#bottom-task-annotation-bar .task-annotation-label {
+    font-family: 'ReadexPro Light', sans-serif;
+    color:rgb(27, 27, 27);
+    border-radius: 10px;
+    padding: 3px 12px;
+    border: 1px solid;
+    color:#0e0e0e;
+    font-size: 13px;
+    box-shadow: 2px 0px 4px 2px black;
+}
+
+#bottom-task-annotation-bar .task-annotation-label:hover {
+    cursor: pointer;
+}
+
+#right-task-toolbar-navbar {
+    margin-top: 5px;
+    height: 400px;
+    width: calc(100% - 8px);
+    margin-left: 4px;
+    margin-right: 4px;
+    background-color: #252525;
+    overflow-y: auto;
+}
+
+#right-task-annotation-icon-container {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-right: 8px;
+}
+
+
+#right-task-annotation-icon-container-l {
+    padding-left: 15px;
+}
+
+#right-task-annotation-icon-container-l img {
+    padding-bottom: 4px;
+}
+
+#right-task-annotation-icon-container img:hover {
+    cursor: pointer;
+}
+
+
+
+.right-toolbar-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 0px;
+    margin: 2px 0px;
+    border-bottom: 2px solid;
+}
+
+
+.right-toolbar-item span {
+    font-size: small;
+    min-width: 16px;
+    font-weight: 600;
+    width:auto;
+    height: 16px;
+    border-radius: 4px;
+    text-align: center;
+    margin: 0px 2px;
+}
+
+.right-toolbar-item .left-flex-content {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #111111;
+    font-size: small;
+    padding: 0px 4px 0px 2px;
+    min-width: 50%;
+    width:auto;
+}
+
+.right-flex-content {
+    display: flex;
+    align-items: center;
+}
+
+
+.right-toolbar-item .left-flex-content div {
+    padding: 2px 5px;
+    border-radius: 2px;
+    border: 0px;
+    min-width:40%;
+}
+
+.expand-toolbar-item {
+    margin: 0px 3px 0px 5px;
+}
+
+.expand-toolbar-item:hover {
+    cursor: pointer;
+}
+
+.hide-toolbar-item:hover {
+    cursor: pointer;
+}
+
+.right-toolbar-item-content {
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.right-toolbar-item-content > textarea {
+    font-family: 'ReadexPro Light', sans-serif;
+    display: flex;
+    align-items: center;
+    background-color: inherit;
+    font-size: medium;
+    border: none;
+    width: 100%;
+    resize: none;
+    height: 22px;
+}
+
+.right-toolbar-item-content > textarea:focus {
+    outline-width: 0;
+}
+
+
+.right-toolbar-item-content.closed {
+    height: 0px;
+}
+
+.right-toolbar-item-content.open {
+    height: 25px;
+}
+
+
+.focus-vertex.one:hover, .focus-vertex.three:hover {
+    cursor: nw-resize;
+}
+
+.focus-vertex.two:hover, .focus-vertex.four:hover {
+    cursor: ne-resize;
+}
+
+#carousel-task-annotation {
+    grid-column: 2;
+    display: flex;
+    position: absolute;
+    top: -4px;
+    z-index: 4;
+    padding: 8px 0px 12px 0px;
+    left: 400px;
+    gap: 12px;
+    width: 47%;
+    justify-content: center;
+    align-items: center;
+}
+
+#carousel-task-annotation img:hover {
+    cursor: pointer;
+}
+
+#carousel-slider {
+    width: 25%;
+
+}
+
+#carousel-slider-value {
+    background-color: #ffffff;
+    border: none;
+    text-align: center;
+    font-size: medium;
+    width: 35px;
+    height: 17px;
+    border-radius: 2px;
+    padding: 2px 0px;
+}
+
+input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+    cursor: pointer;
+    width: 15rem;
+  }
+
+/***** Chrome, Safari, Opera, and Edge Chromium *****/
+input[type="range"]::-webkit-slider-runnable-track {
+    background: #ffffff;
+    height: 0.5em;
+    border-radius: 2px;
+  }
+  
+  /******** Firefox ********/
+  input[type="range"]::-moz-range-track {
+    background: #ffffff;
+    height: 0.5em;
+  }
+
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    background-color: #79cb9c;
+    margin-top: -0.8rem; /* Centers thumb on the track */
+    height: 2.1rem;
+    width: 0.7rem; 
+    border-radius: 0.2rem;
+ }
+
+ input[type="range"]::-moz-range-thumb {
+    border: none; /*Removes extra border that FF applies*/
+    border-radius: 0; /*Removes default border-radius that FF applies*/
+    background-color: #79cb9c;
+    margin-top: -0.8rem; /* Centers thumb on the track */
+    height: 2.1rem;
+    width: 0.7rem; 
+    border-radius: 1rem;
+
+}
+
+
+#user-button:hover {
+    cursor: pointer;
+}
+
+#user-dropdown {
+    cursor: pointer;
+    display: block;
+    position: absolute;
+    right:0px;
+    top: 55px;
+    width: 120px;
+    background-color: #202020;
+    padding: 5px 5px;
+    box-shadow: 2px 2px 10px black;
+
+}
+
+#user-dropdown button {
+    font-size: medium;
+    background-color: rgba(0,0,0,0);
+    border: none;
+    color: white;
+    font-family: 'ReadexPro Light', sans-serif;
+}
+
+#user-dropdown button:hover {
+    cursor: pointer;
+}
+
+.delete-label-btn {
+    margin-left: 4px;
+    border: none;
+    border-radius: 10px;
+}
+
+.delete-label-btn:hover {
+    cursor: pointer;
+}
+
+#export-task-data-form-container {
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    z-index: 9;
+}
+
+#export-project-data-form-container {
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    z-index: 9;
+}
+
+#export-task-data-form {
+    font-family: 'ReadexPro Light', "sans-serif";
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 400px;
+    top: 150px;
+    background-color: white;
+    z-index: 9;
+    padding: 10px 10px;
+    gap: 7px;
+    border-radius: 4px;
+}
+
+#export-project-data-form {
+    font-family: 'ReadexPro Light', "sans-serif";
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 400px;
+    top: 150px;
+    background-color: white;
+    z-index: 9;
+    padding: 10px 10px;
+    gap: 7px;
+    border-radius: 4px;
+}
+
+#export-task-data-form h3,
+#export-project-data-form h3 {
+    margin-top: 3px;
+    margin-bottom: 25px;
+}
+
+#export-task-data-form select,
+#export-project-data-form select {
+    font-family: 'ReadexPro Light', "sans-serif";
+    border-radius: 4px;
+    font-size: small;
+    margin-bottom: 5px;
+    padding: 5px 5px;
+}
+
+#export-task-data-form select:hover,
+#export-project-data-form select:hover {
+    cursor: pointer;
+}
+
+#export-task-data-form input:hover, 
+#export-project-data-form input:hover {
+    cursor: pointer;
+}
+
+#export-task-btn-container,
+#export-project-btn-container {
+    margin-top: 15px;
+    text-align: right;
+}
+
+#main-img {
+    box-shadow: 10px 10px 5px black;
+}
+
+#publish-project-btn-container button,
+#export-task-btn-container button, 
+#export-project-btn-container button {
+    font-family: 'ReadexPro Light', sans-serif;
+    width: 25%;
+    margin-left: 8px;
+    font-size: small;
+    padding: 5px 10px;
+    background-color: #191B1B;
+    color:#EEF4E8;
+    border-radius: 3px;
+    border: none;
+}
+
+#publish-project-btn-container .confirm-button:hover,
+#export-task-btn-container .confirm-button:hover, 
+#export-project-btn-container .confirm-button:hover{
+    transition: background-color 120ms linear;
+    cursor: pointer;
+    background-color: #32BA7C;
+    font-family: 'ReadexPro Regular';
+}
+
+#publish-project-btn-container .cancel-button:hover,
+#export-task-btn-container .cancel-button:hover,
+#export-project-btn-container .cancel-button:hover {
+    cursor: pointer;
+    transition: background-color 120ms linear;
+    background-color: #D62828;
+    font-family: 'ReadexPro Regular';
+}
+
+#export-task-btn-container button:hover {
+    cursor: pointer;
+}
+
+#empty-project-list-container {
+    margin-top: 50px;
+    grid-column: 1/6;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#empty-project-txt {
+    font-family: "ReadexPro Medium";
+    color: white;
+    font-size: larger;
+    margin: 12px 0px 10px 0px;
+}
+
+#empty-project-subtxt {
+    color: white;
+}
+
+#empty-project-subtxt b {
+    color:#32BA7C;
+}
+
+#publish-project-warning {
+    position: absolute;
+    right: 50%;
+    transform: translateX(50%);
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top:200px;
+    width: 25%;
+    min-width: 300px;
+    padding: 10px 10px;
+    border-radius: 4px;
+    gap: 10px;
+}
+
+#publish-project-warning h3 {
+    margin-bottom:8px;
+}
+
+#publish-project-warning h4 {
+    font-size: 14px;
+    margin-bottom:4px;
+}
+
+#publish-project-btn-container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.bottom-task-picker {
+    position: absolute;
+    top: -13px;
+    left: -52px;
+    transform: translateY(-100%);
+}
+
+.new-label-form-task-annotation {
+    width:100%;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap:5px;
+}
