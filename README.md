@@ -1,5 +1,7 @@
 # DocuLabeler
-**DocuLabeler** is an open-source labeling and annotation tool designed for efficiently labeling document images. With its user-friendly interface and integration with the **Tesseract OCR Engine**, it streamlines text detection and recognition, making the annotation 
+<div><img src="./img/doclab_logo.png" alt="Test Image" width="350"></div>
+
+**DocuLabeler** is an open-source labeling and annotation tool designed for efficiently labeling document images. With its user-friendly interface and integration with the [Tesseract OCR Engine](https://github.com/tesseract-ocr/tesseract), it streamlines text detection and recognition, making the annotation 
 process both fast and precise. Beyond its primary function, DocuLabeler can be utilized to prepare datasets for tasks such as object detection and recognition. Raw data can then be exported and used to train or finetune your ML models.
 
 ## Features
@@ -8,6 +10,7 @@ projects. <br>
 
 Once you've logged in for the first time, you can create a project by clicking the **Create** button located in the upper right corner. You'll be prompted to provide a project name and, if desired, a list of labels.  Each project consists of smaller tasks, and each newly created task must include at least one image. Furthermore, task names within the same project must be unique. Once a task is created, you can click the **Open** button to begin annotating the images.<br>
 ### Annotation
+<div><img src="./img/doclab_annot_sample.png" alt="Test Image" width="850"></div>
 Once inside the annotation component, you can navigate through the task images by using the left and right arrows on the top of the screen or the left and right arrow keys. Annotations are **automatically saved** each time you move to a different image, so don't worry too much about saving constantly! <br>
 
 Doculaber offers **four main** annotation modes:
@@ -30,7 +33,7 @@ In *Drawing Mode* you have the capability to create annotation rectangles. To st
 In *Labeling Mode* you can quickly change your annotations' labels. Simply select one of your labels and left-click on the rectangles you want to re-label.
 <br>
 ### Integrated OCR Engine
-In addition to the previously discussed features, DocuLabeler includes seamless integration with the powerful **Tesseract OCR Engine**. Tesseract provides a swift and accurate way for automatically annotating textual content within documents. To utilize it, just click on the **Apply OCR** icon located in the left toolbar. It will rapidly *detect and recognize text* within the current image, streamlining the document annotation process. 
+In addition to the previously discussed features, DocuLabeler includes seamless integration with the powerful <a> Tesseract OCR Engine </a>. Tesseract provides a swift and accurate way for automatically annotating textual content within documents. To utilize it, just click on the **Apply OCR** icon located in the left toolbar. It will rapidly *detect and recognize text* within the current image, streamlining the document annotation process. 
 
 ### Data Export
 Once you've completed the annotation process for your dataset of images, it's time to export the data for your use. You can export the annotations of a single task by selecting the **Export** option from the task's dropdown menu. You'll have the option to include the task images in the export. Right now only two standard formats are supported:
@@ -44,21 +47,48 @@ This format retains all information about the labels in its raw form, but it req
 
 ## How To Install
 #### Requirements
-* Node.js version *18.16.1*
+* [Node.js version 18.16.1](https://nodejs.org/en/blog/release/v18.16.1)
 * NPM version *9.5.1*
-* MongoDB version *7.0.1*
-* Tesseract version *5.3.1*
+* [MongoDB version 7.0.*](https://www.mongodb.com/try/download/community)
+* [Tesseract version 5.3.1](https://github.com/tesseract-ocr/tesseract/releases)
 
 #### 1 - Install the required Node.js dependencies
 After cloning DocuLabeler's repository locally, you'll have to install the Node.js required packages for both the Client and Server components. To do so:
 1. Run "npm install" from inside of the folder "docu-labeler/doculabeler"
-2. Run "npm install" from inside of the folder "docu-labeler/server"
+   ```sh
+     cd .\doculabeler\
+     npm install
+   ```
+3. Run "npm install" from inside of the folder "docu-labeler/server"
+    ```sh
+     cd .\server\
+     npm install
+   ```
 
 #### 2 - Initialize the MongoDB Database
 In order to do so you can run the script **initialize_database.js** inside *"docu-labeler/server/scripts"* using Node.js. The script creates the database automatically, but assumes that your deployment can be accessed locally from MongoDB's standard port 27017. If that's not the case, the script should be modified accordingly.
+   ```sh
+     cd .\server\scripts
+     node .\initialize_database.js
+   ```
+
+#### 2.5 [OPTIONAL] - Set up Tesseract
+If you want to use Tesseract in your annotation workflow, you'll have to install it locally first. You can download it from [here.](https://github.com/tesseract-ocr/tesseract/releases)  
+After successfully installing it on your machine, you'll need to add it to your PATH environment variable. The application is usually found inside "C:\Program Files\Tesseract-OCR".
 
 #### 3 - Start the application
-At this point everything should be ready. To start the server place yourself inside of the folder *"docu-labeler/server"* and run **"node main.js"**. To start the client application place yourself inside of the folder *"docu-labeler/doculabeler"* and run **"npm start"**.
+At this point everything should be ready. All that's left to do is to start the application, by first running the server:
+   ```sh
+     # In a terminal
+     cd .\server\
+     node .\main.js
+  ```
+and then the client:
+  ```sh
+     # In another terminal
+     cd .\doculabeler\
+     npm start
+   ```
 
 ### Notes
 - In order to use Tesseract in your annotation workflow, you'll have to install it and add it to your system's PATH environment variable.
