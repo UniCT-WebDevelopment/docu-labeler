@@ -17,7 +17,7 @@ connection_string_local = 'mongodb://127.0.0.1:27017/DocuLabeler'
 connection_string_docker = 'mongodb://host.docker.internal:27017/DocuLabeler'
 
 mongoose.connect(connection_string_local)
-.then(//console.log("Mongoose: connesso al server"));
+.then(console.log("Mongoose: connesso al server"));
 
 const express_server = express();
 
