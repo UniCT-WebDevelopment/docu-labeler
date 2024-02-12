@@ -103,6 +103,7 @@ LinkedIn: https://www.linkedin.com/in/giovanni-piccinini-6aa525206/
 
 ### Todos
 - Add more label export formats.
+- Dockerize the application.
 - Add the ability to import custom datasets for popular ANN architectures ( MobileNet, ResNet, LayoutLM, BERT.. ).
 - Add the ability to draw polygons, instead of just rectangles.
 - Make it prettier!
