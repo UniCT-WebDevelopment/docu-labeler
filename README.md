@@ -94,12 +94,16 @@ and then the client:
 - In order to use Tesseract in your annotation workflow, you'll have to install it and add it to your system's PATH environment variable.
 - If you want to allow multiple users to use the application you will have to change the value of the environment variable "DOCULABELER_API_ADDRESS", which can be found in the *"docu-labeler/doculabeler/.env"* file, so that it contains the IP address and port number of the server.
 
+### Authors
+This project was developed by Giovanni Piccinini, a Computer Science student at the Department of Mathematics and Computer Science, University of Catania, Italy. If you have any questions or suggestions feel free to contact me.
 
+### Contacts
+Email: piccininigiovanni.97@gmail.com
+LinkedIn: https://www.linkedin.com/in/giovanni-piccinini-6aa525206/
 
+### Todos
+- Add more label export formats.
+- Add the ability to import custom datasets for popular ANN architectures ( MobileNet, ResNet, LayoutLM, BERT.. ).
+- Add the ability to draw polygons, instead of just rectangles.
+- Make it prettier!
 
-
-  
-
-
-
-  
