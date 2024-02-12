@@ -98,8 +98,8 @@ and then the client:
 This project was developed by Giovanni Piccinini, a Computer Science student at the Department of Mathematics and Computer Science, University of Catania, Italy. If you have any questions or suggestions feel free to contact me.
 
 ### Contacts
-Email: piccininigiovanni.97@gmail.com
-LinkedIn: https://www.linkedin.com/in/giovanni-piccinini-6aa525206/
+- Email: piccininigiovanni.97@gmail.com 
+- LinkedIn: https://www.linkedin.com/in/giovanni-piccinini-6aa525206/
 
 ### Todos
 - Add more label export formats.
